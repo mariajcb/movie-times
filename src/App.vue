@@ -6,8 +6,8 @@
     </div>
     <div id="overview">
       <div class="main">
-        <MovieList />
-        <MovieFilter />
+        <MovieList :genre="genre" :time="time"/>
+        <MovieFilter v-on:check-filter="checkFilter"/>
       </div>
     </div>
   </div>
@@ -23,9 +23,27 @@ import MovieFilter from '@/components/MovieFilter.vue'
 import MovieList from '@/components/MovieList.vue'
 
 export default {
+  data () {
+    return {
+      genre: [],
+      time: []
+    }
+  },
   components: {
     MovieFilter,
     MovieList
+  },
+  methods: {
+    checkFilter (category, title, checked) {
+      if (checked) {
+        this[category].push(title)
+      } else {
+        let index = this[category].indexOf(title)
+        if (index > -1 ) {
+          this[category].splice(index, 1)
+        }
+      }
+    }
   }
 }
 </script>
