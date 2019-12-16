@@ -5,7 +5,8 @@
         v-for="movie in filteredMovies"
         :key="movie.title"
         :movie="movie.movie"
-        :sessions="movie.sessions">
+        :sessions="movie.sessions"
+        :day="day">
       </movie-item>
     </div>
     <div v-else-if="movies.length" class="no-results">
@@ -21,7 +22,7 @@
 import MovieItem from './MovieItem.vue'
 
 export default {
-  props: ['genre', 'time', 'movies'],
+  props: ['genre', 'time', 'movies', 'day'],
   components: {
     MovieItem
   },
