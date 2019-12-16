@@ -6,7 +6,7 @@
     </div>
     <div id="overview">
       <div class="main">
-        <MovieList :genre="genre" :time="time"/>
+        <MovieList :genre="genre" :time="time" :movies="movies" :day="day"/>
         <MovieFilter v-on:check-filter="checkFilter"/>
       </div>
     </div>
@@ -15,23 +15,31 @@
 
 <style lang="scss">
 @import '@/style.scss';
-
 </style>
 
 <script>
 import MovieFilter from '@/components/MovieFilter.vue'
 import MovieList from '@/components/MovieList.vue'
+import axios from 'axios'
+import moment from 'moment'
 
 export default {
   data () {
     return {
       genre: [],
-      time: []
+      time: [],
+      movies: [],
+      day: moment()
     }
   },
   components: {
     MovieFilter,
     MovieList
+  },
+  created() {
+    axios.get('/api_sample.json').then(response => {
+      this.movies = response.data
+    })
   },
   methods: {
     checkFilter (category, title, checked) {
