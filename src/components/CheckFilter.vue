@@ -1,13 +1,13 @@
 <template lang="html">
-  <div :class="{ 'check-filter': true, active: checked }">
+  <div :class="{ 'check-filter': true, active: checked }" @click="checkFilter">
     <span class="checkbox"></span>
-    <span class="check-filter-title" @click="checkFilter">{{ title }}</span>
+    <span class="check-filter-title">{{ title }}</span>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['title'],
+  props: ['title', 'category'],
   data () {
     return {
       checked: false
@@ -16,7 +16,7 @@ export default {
   methods: {
     checkFilter () {
       this.checked = !this.checked
-      this.$emit('check-filter', 'genre', this.title, this.checked)
+      this.$emit('check-filter', this.category, this.title, this.checked)
     }
   }
 }

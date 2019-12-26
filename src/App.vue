@@ -29,7 +29,7 @@ export default {
       genre: [],
       time: [],
       movies: [],
-      day: moment()
+      day: moment("2017-04-04T19:30:00.000Z")
     }
   },
   components: {

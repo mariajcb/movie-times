@@ -9,7 +9,7 @@
         <span class="movie-rating">{{ movie.Rated }}</span>
       </div>
       <div class="movie-sessions">
-        <div v-for="session in sessions" :key="session.session_id" class="session-time-wrapper">
+        <div v-for="session in filteredSessions(sessions)" :key="session.session_id" class="session-time-wrapper">
           <div class="session-time">
             {{ session.time | moment('h:mm A') }}
           </div>
@@ -20,14 +20,24 @@
 </template>
 
 <script>
+import times from '../util/times'
+
 export default {
-  props: ['movie', 'sessions', 'day']
-  // methods: {
-  //   filteredSessions(sessions) {
-  //     return sessions.filter(session => {
-  //       return this.$moment(session.time).isSame(this.day, 'ddd')
-  //     })
-  //   }
-  // }
+  props: ['movie', 'sessions', 'day', 'time'],
+  methods: {
+    filteredSessions(sessions) {
+      return sessions.filter(this.sessionPassesTimeFilter)
+    },
+    sessionPassesTimeFilter(session) {
+      if (!this.day.isSame(this.$moment(session.time), 'day')) {
+        return false
+      } else if (this.time.length === 0 || this.time.length === 2) {
+        return true
+      } else if (this.time[0] === times.AFTER_6PM) {
+        return this.$moment(session.time).hour() >= 18
+      }
+      return this.$moment(session.time).hour() < 18
+    }
+  }
 }
 </script>
