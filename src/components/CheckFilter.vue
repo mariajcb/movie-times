@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import { bus } from '../main'
+
 export default {
   props: ['title', 'category'],
   data () {
@@ -16,7 +18,7 @@ export default {
   methods: {
     checkFilter () {
       this.checked = !this.checked
-      this.$emit('check-filter', this.category, this.title, this.checked)
+      bus.$emit('check-filter', this.category, this.title, this.checked)
     }
   }
 }

@@ -3,11 +3,13 @@ import App from './App.vue'
 import router from './router'
 import VueMoment from 'vue-moment'
 import moment from 'moment-timezone'
+export const bus = new Vue()
 
 Vue.config.productionTip = false
 Vue.use(VueMoment, {
     moment,
 })
+
 moment.tz.setDefault("UTC")
 
 new Vue({

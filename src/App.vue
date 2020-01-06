@@ -22,6 +22,7 @@ import MovieFilter from '@/components/MovieFilter.vue'
 import MovieList from '@/components/MovieList.vue'
 import axios from 'axios'
 import moment from 'moment'
+import { bus } from './main'
 
 export default {
   data () {
@@ -40,6 +41,7 @@ export default {
     axios.get('/api_sample.json').then(response => {
       this.movies = response.data
     })
+    bus.$on('check-filter', this.checkFilter)
   },
   methods: {
     checkFilter (category, title, checked) {
