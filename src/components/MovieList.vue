@@ -4,10 +4,14 @@
       <movie-item
         v-for="movie in filteredMovies"
         :key="movie.title"
-        :movie="movie.movie"
-        :sessions="movie.sessions"
-        :day="day"
-        :time="time">
+        :movie="movie.movie">
+        <div class="movie-sessions">
+          <div v-for="session in filteredSessions(movie.sessions)" :key="session.session_id" class="session-time-wrapper">
+            <div class="session-time">
+              {{ session.time | moment('h:mm A') }}
+            </div>
+          </div>
+        </div>
       </movie-item>
     </div>
     <div v-else-if="movies.length" class="no-results">
@@ -63,6 +67,9 @@ export default {
         return this.$moment(session.time).hour() >= 18
       }
       return this.$moment(session.time).hour() < 18
+    },
+    filteredSessions(sessions) {
+        return sessions.filter(this.sessionPassesTimeFilter)
     }
   }
 }
