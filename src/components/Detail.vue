@@ -15,7 +15,7 @@
           </tr>
           <tr>
             <td>
-              Running time
+              Running time:
             </td>
             <td>
               {{ movie.Runtime }}

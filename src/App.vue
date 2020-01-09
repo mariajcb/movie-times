@@ -23,7 +23,7 @@ export default {
       genre: [],
       time: [],
       movies: [],
-      day: moment("2017-04-04T19:30:00.000Z")
+      day: moment("2020-01-04T19:30:00.000Z")
     }
   },
   created() {
@@ -31,6 +31,7 @@ export default {
       this.movies = response.data
     })
     bus.$on('check-filter', this.checkFilter)
+    bus.$on('set-day', (day) => { this.day = day })
   },
   methods: {
     checkFilter (category, title, checked) {
