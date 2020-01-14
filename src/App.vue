@@ -1,15 +1,21 @@
 <template>
-  <div id="app">
+  <div id="app" v-cloak>
     <div id="title">
       <img src="@/assets/logo.png">
       <h1>Vue.js Cinema</h1>
     </div>
-    <router-view :genre="genre" :time="time" :movies="movies" :day="day"/>
+    <keep-alive>
+      <router-view :genre="genre" :time="time" :movies="movies" :day="day"/>
+    </keep-alive>
   </div>
 </template>
 
 <style lang="scss">
 @import '@/style.scss';
+
+[v-cloak] {
+  display: none!important
+}
 </style>
 
 <script>
