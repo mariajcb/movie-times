@@ -6,7 +6,7 @@
         :key="movie.title"
         :movie="movie.movie">
         <div class="movie-sessions">
-          <div v-for="session in filteredSessions(movie.sessions)" :key="session.session_id" class="session-time-wrapper tooltip-wrapper"
+          <div v-for="session in filteredSessions(movie.sessions)" :key="session.id" class="session-time-wrapper tooltip-wrapper"
           v-tooltip="{ seats: session.seats }">
             <div class="session-time">
               {{ session.time | moment('h:mm A') }}

@@ -1,6 +1,6 @@
 <template lang="html">
   <div id="overview">
-    <DaySelect :selected="day" />
+    <!-- <DaySelect :selected="day" /> -->
     <div class="main">
       <MovieList :genre="genre" :time="time" :movies="movies" :day="day"/>
       <MovieFilter />
@@ -11,14 +11,14 @@
 <script>
 import MovieFilter from './MovieFilter'
 import MovieList from './MovieList'
-import DaySelect from './DaySelect'
+// import DaySelect from './DaySelect'
 
 export default {
   props: ['genre', 'time', 'movies', 'day'],
   components: {
     MovieFilter,
     MovieList,
-    DaySelect
+    // DaySelect
   }
 }
 </script>
